@@ -1,36 +1,338 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpijblhi4pkne"]
+[gd_scene load_steps=37 format=3 uid="uid://dpijblhi4pkne"]
 
-[ext_resource type="Script" path="res://scripts/Interactionelements.gd" id="1_1ye8c"]
+[ext_resource type="Script" path="res://scripts/TouchControl.gd" id="1_ckmis"]
 [ext_resource type="Texture2D" uid="uid://bv27nctu4xkax" path="res://assets/images/Embedded Display.png" id="1_oflau"]
 [ext_resource type="Texture2D" uid="uid://cnsg3rpv8y2o7" path="res://assets/images/Embedded Displaywithbuttons.png" id="3_qk3te"]
+[ext_resource type="Texture2D" uid="uid://c1r0re0urein6" path="res://assets/images/svg/settingsButton.svg" id="4_srdjn"]
+[ext_resource type="Texture2D" uid="uid://co1kscwv2db8r" path="res://assets/images/Crosshair.png" id="4_vantl"]
+[ext_resource type="Script" path="res://scripts/Crosshair.gd" id="5_5n6uy"]
+[ext_resource type="Script" path="res://scripts/BackButton.gd" id="5_6jhwe"]
+[ext_resource type="Texture2D" uid="uid://xkvelhia30e0" path="res://assets/images/svg/backButton.svg" id="5_lac4c"]
+[ext_resource type="Texture2D" uid="uid://es4ur6s70uee" path="res://assets/images/svg/PlayButton.svg" id="5_m3jl5"]
+[ext_resource type="Texture2D" uid="uid://bnd86gexqkl53" path="res://assets/images/svg/saveButton.svg" id="6_1kqxd"]
+[ext_resource type="Script" path="res://scripts/Start_Stop.gd" id="6_xurlb"]
+[ext_resource type="Texture2D" uid="uid://btfo8prnkkre6" path="res://assets/images/svg/loadButton.svg" id="7_wnqa5"]
+[ext_resource type="Texture2D" uid="uid://013ajailwx1f" path="res://assets/images/svg/lightButton.svg" id="8_i561d"]
+[ext_resource type="Script" path="res://scripts/SaveButton.gd" id="9_2ku3k"]
+[ext_resource type="Texture2D" uid="uid://c048j1d8c7jx5" path="res://assets/images/svg/appButton.svg" id="9_qsdv5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tynh1"]
-size = Vector2(1100, 520)
+[sub_resource type="SystemFont" id="SystemFont_yayw5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqj1j"]
+font = SubResource("SystemFont_yayw5")
+font_size = 64
+font_color = Color(1, 0.313726, 0.313726, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ug3df"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f38r2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmjfm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uybui"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olmrc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yx8v7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_di6wo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3x7q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khoea"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c5270"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hh7tn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bph2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3dxt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vi40s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wjqp7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrt6n"]
+
+[sub_resource type="Animation" id="Animation_mg5sf"]
+resource_name = "FadeoutMenu"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons/MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 98)]
+}
+
+[sub_resource type="Animation" id="Animation_ut7cc"]
+resource_name = "FadeinMenu"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons/MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 98), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcumi"]
+_data = {
+"FadeinMenu": SubResource("Animation_ut7cc"),
+"FadeoutMenu": SubResource("Animation_mg5sf")
+}
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Interactionelements" type="Node2D" parent="."]
-script = ExtResource("1_1ye8c")
-
-[node name="Area2D" type="Area2D" parent="Interactionelements"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactionelements/Area2D"]
-position = Vector2(550, 260)
-shape = SubResource("RectangleShape2D_tynh1")
-
-[node name="UI_Elements" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1100.0
+offset_bottom = 467.0
+mouse_filter = 1
+script = ExtResource("1_ckmis")
 
-[node name="TextureRect" type="TextureRect" parent="UI_Elements"]
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
 offset_right = 1100.0
 offset_bottom = 620.0
 texture = ExtResource("1_oflau")
 
-[node name="TextureRect2" type="TextureRect" parent="UI_Elements"]
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+visible = false
 modulate = Color(1, 1, 1, 0.337255)
+layout_mode = 0
 offset_right = 1100.0
 offset_bottom = 620.0
 texture = ExtResource("3_qk3te")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 958.0
+offset_top = -11.0
+offset_right = 1100.0
+offset_bottom = 77.0
+text = "39°C"
+label_settings = SubResource("LabelSettings_aqj1j")
+
+[node name="Interactionelements" type="Node2D" parent="."]
+
+[node name="MenuButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 466.0
+offset_right = 1100.0
+offset_bottom = 619.0
+mouse_filter = 1
+
+[node name="BackButton" type="Button" parent="MenuButtons" node_paths=PackedStringArray("animationPlayer")]
+offset_left = -1.0
+offset_top = 56.0
+offset_right = 182.0
+offset_bottom = 164.0
+scale = Vector2(0.959862, 0.959862)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ug3df")
+icon = ExtResource("5_lac4c")
+flat = true
+script = ExtResource("5_6jhwe")
+animationPlayer = NodePath("../../AnimationPlayer")
+
+[node name="MainMenu" type="Node2D" parent="MenuButtons"]
+
+[node name="Settings" type="Button" parent="MenuButtons/MainMenu"]
+offset_left = -1.0
+offset_top = 54.0
+offset_right = 182.0
+offset_bottom = 162.0
+scale = Vector2(0.959862, 0.959862)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ug3df")
+icon = ExtResource("4_srdjn")
+flat = true
+
+[node name="Start_Stop" type="Button" parent="MenuButtons/MainMenu" node_paths=PackedStringArray("sprite")]
+offset_left = 183.0
+offset_top = 54.0
+offset_right = 366.0
+offset_bottom = 162.0
+scale = Vector2(0.957933, 0.957933)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f38r2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xmjfm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uybui")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_olmrc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yx8v7")
+toggle_mode = true
+icon = ExtResource("5_m3jl5")
+script = ExtResource("6_xurlb")
+sprite = NodePath("../../../Crosshair")
+
+[node name="SaveButton" type="Button" parent="MenuButtons/MainMenu" node_paths=PackedStringArray("animationPlayer")]
+offset_left = 370.0
+offset_top = 54.0
+offset_right = 553.0
+offset_bottom = 162.0
+scale = Vector2(0.959339, 0.959339)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_di6wo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_y3x7q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_khoea")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_c5270")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hh7tn")
+icon = ExtResource("6_1kqxd")
+script = ExtResource("9_2ku3k")
+animationPlayer = NodePath("../../../AnimationPlayer")
+
+[node name="LoadButton" type="Button" parent="MenuButtons/MainMenu"]
+offset_left = 551.0
+offset_top = 57.0
+offset_right = 726.0
+offset_bottom = 157.0
+scale = Vector2(0.959508, 0.959508)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("7_wnqa5")
+
+[node name="LightButton" type="Button" parent="MenuButtons/MainMenu"]
+offset_left = 738.0
+offset_top = 57.0
+offset_right = 913.0
+offset_bottom = 157.0
+scale = Vector2(0.961521, 0.961521)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("8_i561d")
+
+[node name="AppDrawer" type="Button" parent="MenuButtons/MainMenu"]
+offset_left = 924.0
+offset_top = 57.0
+offset_right = 1099.0
+offset_bottom = 157.0
+scale = Vector2(0.959567, 0.959567)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("9_qsdv5")
+
+[node name="2ndMenu" type="Node2D" parent="MenuButtons"]
+position = Vector2(0, 98)
+
+[node name="Settings" type="Button" parent="MenuButtons/2ndMenu"]
+offset_left = -1.0
+offset_top = 54.0
+offset_right = 182.0
+offset_bottom = 162.0
+scale = Vector2(0.959862, 0.959862)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ug3df")
+icon = ExtResource("4_srdjn")
+flat = true
+
+[node name="Start_Stop" type="Button" parent="MenuButtons/2ndMenu" node_paths=PackedStringArray("sprite")]
+offset_left = 183.0
+offset_top = 54.0
+offset_right = 366.0
+offset_bottom = 162.0
+scale = Vector2(0.957933, 0.957933)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f38r2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xmjfm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uybui")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_olmrc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yx8v7")
+toggle_mode = true
+icon = ExtResource("5_m3jl5")
+script = ExtResource("6_xurlb")
+sprite = NodePath("../../../Crosshair")
+
+[node name="SaveButton" type="Button" parent="MenuButtons/2ndMenu"]
+offset_left = 370.0
+offset_top = 54.0
+offset_right = 553.0
+offset_bottom = 162.0
+scale = Vector2(0.959339, 0.959339)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_di6wo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_y3x7q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_khoea")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_c5270")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hh7tn")
+icon = ExtResource("6_1kqxd")
+
+[node name="LoadButton" type="Button" parent="MenuButtons/2ndMenu"]
+offset_left = 551.0
+offset_top = 57.0
+offset_right = 726.0
+offset_bottom = 157.0
+scale = Vector2(0.959508, 0.959508)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("7_wnqa5")
+
+[node name="LightButton" type="Button" parent="MenuButtons/2ndMenu"]
+offset_left = 738.0
+offset_top = 57.0
+offset_right = 913.0
+offset_bottom = 157.0
+scale = Vector2(0.961521, 0.961521)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("8_i561d")
+
+[node name="AppDrawer" type="Button" parent="MenuButtons/2ndMenu"]
+offset_left = 924.0
+offset_top = 57.0
+offset_right = 1099.0
+offset_bottom = 157.0
+scale = Vector2(0.959567, 0.959567)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("9_qsdv5")
+
+[node name="Crosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("temperatureLabel")]
+position = Vector2(253, 145)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_vantl")
+script = ExtResource("5_5n6uy")
+temperatureLabel = NodePath("../Control/Label")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hcumi")
+}
+
+[connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
+[connection signal="mouse_entered" from="Control" to="Control" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="Control" method="_on_mouse_exited"]
+[connection signal="updateTouchPos" from="Control" to="Crosshair" method="_on_control_update_touch_pos"]
+[connection signal="pressed" from="MenuButtons/BackButton" to="MenuButtons/BackButton" method="_on_pressed"]
+[connection signal="toggled" from="MenuButtons/MainMenu/Start_Stop" to="MenuButtons/MainMenu/Start_Stop" method="_on_toggled"]
+[connection signal="pressed" from="MenuButtons/MainMenu/SaveButton" to="MenuButtons/MainMenu/SaveButton" method="_on_pressed"]
+[connection signal="toggled" from="MenuButtons/2ndMenu/Start_Stop" to="MenuButtons/2ndMenu/Start_Stop" method="_on_toggled"]

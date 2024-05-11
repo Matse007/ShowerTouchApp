@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpijblhi4pkne"]
+
+[ext_resource type="Script" path="res://scripts/Interactionelements.gd" id="1_1ye8c"]
+[ext_resource type="Texture2D" uid="uid://bv27nctu4xkax" path="res://assets/images/Embedded Display.png" id="1_oflau"]
+[ext_resource type="Texture2D" uid="uid://cnsg3rpv8y2o7" path="res://assets/images/Embedded Displaywithbuttons.png" id="3_qk3te"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tynh1"]
+size = Vector2(1100, 520)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Interactionelements" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Interactionelements"]
+script = ExtResource("1_1ye8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactionelements/Area2D"]
+position = Vector2(550, 260)
+shape = SubResource("RectangleShape2D_tynh1")
+
+[node name="UI_Elements" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="UI_Elements"]
+layout_mode = 0
+offset_right = 1100.0
+offset_bottom = 620.0
+texture = ExtResource("1_oflau")
+
+[node name="TextureRect2" type="TextureRect" parent="UI_Elements"]
+modulate = Color(1, 1, 1, 0.337255)
+layout_mode = 0
+offset_right = 1100.0
+offset_bottom = 620.0
+texture = ExtResource("3_qk3te")
+
+[connection signal="input_event" from="Interactionelements/Area2D" to="Interactionelements/Area2D" method="_on_input_event"]
