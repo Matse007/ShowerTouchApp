@@ -4,4 +4,4 @@ extends Button
 var animationPlayer : AnimationPlayer
 
 func _on_pressed():
-	animationPlayer.play("FadeToSave")
+	animationPlayer.play("FadeToLoad")

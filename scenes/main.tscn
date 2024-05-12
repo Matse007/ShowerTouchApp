@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://dpijblhi4pkne"]
+[gd_scene load_steps=46 format=3 uid="uid://dpijblhi4pkne"]
 
 [ext_resource type="Script" path="res://scripts/TouchControl.gd" id="1_ckmis"]
 [ext_resource type="Texture2D" uid="uid://bv27nctu4xkax" path="res://assets/images/Embedded Display.png" id="1_oflau"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_uqsqo"]
 [ext_resource type="Texture2D" uid="uid://cnsg3rpv8y2o7" path="res://assets/images/Embedded Displaywithbuttons.png" id="3_qk3te"]
 [ext_resource type="Texture2D" uid="uid://c1r0re0urein6" path="res://assets/images/svg/settingsButton.svg" id="4_srdjn"]
 [ext_resource type="Texture2D" uid="uid://co1kscwv2db8r" path="res://assets/images/Crosshair.png" id="4_vantl"]
@@ -15,6 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://013ajailwx1f" path="res://assets/images/svg/lightButton.svg" id="8_i561d"]
 [ext_resource type="Script" path="res://scripts/SaveButton.gd" id="9_2ku3k"]
 [ext_resource type="Texture2D" uid="uid://c048j1d8c7jx5" path="res://assets/images/svg/appButton.svg" id="9_qsdv5"]
+[ext_resource type="Script" path="res://scripts/LoadButton.gd" id="10_oi8ul"]
+[ext_resource type="Texture2D" uid="uid://jgev43i0qvpy" path="res://assets/images/svg/1.svg" id="14_4xe6u"]
+[ext_resource type="Texture2D" uid="uid://cxlpm4ax3i1kd" path="res://assets/images/svg/2.svg" id="15_y7y2l"]
+[ext_resource type="Texture2D" uid="uid://bcotyvrjk5kgr" path="res://assets/images/svg/3.svg" id="16_208ps"]
+[ext_resource type="Texture2D" uid="uid://drrc4586f23wd" path="res://assets/images/svg/4.svg" id="17_p6ldx"]
+[ext_resource type="Texture2D" uid="uid://dsdoanc448ah0" path="res://assets/images/svg/5.svg" id="18_raa2y"]
 
 [sub_resource type="SystemFont" id="SystemFont_yayw5"]
 
@@ -60,8 +67,8 @@ content_margin_bottom = 0.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrt6n"]
 
 [sub_resource type="Animation" id="Animation_mg5sf"]
-resource_name = "FadeoutMenu"
-length = 0.1
+resource_name = "FadeToSave"
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -74,10 +81,78 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 98)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/SaveMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0500612, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 98), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ut7cc"]
-resource_name = "FadeinMenu"
-length = 0.1
+resource_name = "FadeinMainFromSave"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons/MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 98), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/SaveMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 98)]
+}
+
+[sub_resource type="Animation" id="Animation_ekq7y"]
+resource_name = "FadeinMainFromLoad"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons/MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 98), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/LoadMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 98)]
+}
+
+[sub_resource type="Animation" id="Animation_2rrr7"]
+resource_name = "FadeToLoad"
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,16 +163,31 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
+"values": [Vector2(0, 0), Vector2(0, 98)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/LoadMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
 "values": [Vector2(0, 98), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hcumi"]
 _data = {
-"FadeinMenu": SubResource("Animation_ut7cc"),
-"FadeoutMenu": SubResource("Animation_mg5sf")
+"FadeToLoad": SubResource("Animation_2rrr7"),
+"FadeToSave": SubResource("Animation_mg5sf"),
+"FadeinMainFromLoad": SubResource("Animation_ekq7y"),
+"FadeinMainFromSave": SubResource("Animation_ut7cc")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="AppHandler" type="Node2D"]
+script = ExtResource("1_uqsqo")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -140,18 +230,6 @@ offset_top = 466.0
 offset_right = 1100.0
 offset_bottom = 619.0
 mouse_filter = 1
-
-[node name="BackButton" type="Button" parent="MenuButtons" node_paths=PackedStringArray("animationPlayer")]
-offset_left = -1.0
-offset_top = 56.0
-offset_right = 182.0
-offset_bottom = 164.0
-scale = Vector2(0.959862, 0.959862)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ug3df")
-icon = ExtResource("5_lac4c")
-flat = true
-script = ExtResource("5_6jhwe")
-animationPlayer = NodePath("../../AnimationPlayer")
 
 [node name="MainMenu" type="Node2D" parent="MenuButtons"]
 
@@ -196,7 +274,7 @@ icon = ExtResource("6_1kqxd")
 script = ExtResource("9_2ku3k")
 animationPlayer = NodePath("../../../AnimationPlayer")
 
-[node name="LoadButton" type="Button" parent="MenuButtons/MainMenu"]
+[node name="LoadButton" type="Button" parent="MenuButtons/MainMenu" node_paths=PackedStringArray("animationPlayer")]
 offset_left = 551.0
 offset_top = 57.0
 offset_right = 726.0
@@ -208,6 +286,8 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
 icon = ExtResource("7_wnqa5")
+script = ExtResource("10_oi8ul")
+animationPlayer = NodePath("../../../AnimationPlayer")
 
 [node name="LightButton" type="Button" parent="MenuButtons/MainMenu"]
 offset_left = 738.0
@@ -235,20 +315,22 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
 icon = ExtResource("9_qsdv5")
 
-[node name="2ndMenu" type="Node2D" parent="MenuButtons"]
+[node name="SaveMenu" type="Node2D" parent="MenuButtons"]
 position = Vector2(0, 98)
 
-[node name="Settings" type="Button" parent="MenuButtons/2ndMenu"]
+[node name="BackButton" type="Button" parent="MenuButtons/SaveMenu" node_paths=PackedStringArray("animationPlayer")]
 offset_left = -1.0
 offset_top = 54.0
 offset_right = 182.0
 offset_bottom = 162.0
 scale = Vector2(0.959862, 0.959862)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ug3df")
-icon = ExtResource("4_srdjn")
+icon = ExtResource("5_lac4c")
 flat = true
+script = ExtResource("5_6jhwe")
+animationPlayer = NodePath("../../../AnimationPlayer")
 
-[node name="Start_Stop" type="Button" parent="MenuButtons/2ndMenu" node_paths=PackedStringArray("sprite")]
+[node name="Start_Stop" type="Button" parent="MenuButtons/SaveMenu"]
 offset_left = 183.0
 offset_top = 54.0
 offset_right = 366.0
@@ -260,11 +342,9 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_uybui")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_olmrc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yx8v7")
 toggle_mode = true
-icon = ExtResource("5_m3jl5")
-script = ExtResource("6_xurlb")
-sprite = NodePath("../../../Crosshair")
+icon = ExtResource("14_4xe6u")
 
-[node name="SaveButton" type="Button" parent="MenuButtons/2ndMenu"]
+[node name="SaveButton" type="Button" parent="MenuButtons/SaveMenu"]
 offset_left = 370.0
 offset_top = 54.0
 offset_right = 553.0
@@ -275,9 +355,9 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_y3x7q")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_khoea")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_c5270")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hh7tn")
-icon = ExtResource("6_1kqxd")
+icon = ExtResource("15_y7y2l")
 
-[node name="LoadButton" type="Button" parent="MenuButtons/2ndMenu"]
+[node name="LoadButton" type="Button" parent="MenuButtons/SaveMenu"]
 offset_left = 551.0
 offset_top = 57.0
 offset_right = 726.0
@@ -288,9 +368,9 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
-icon = ExtResource("7_wnqa5")
+icon = ExtResource("16_208ps")
 
-[node name="LightButton" type="Button" parent="MenuButtons/2ndMenu"]
+[node name="LightButton" type="Button" parent="MenuButtons/SaveMenu"]
 offset_left = 738.0
 offset_top = 57.0
 offset_right = 913.0
@@ -301,9 +381,9 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
-icon = ExtResource("8_i561d")
+icon = ExtResource("17_p6ldx")
 
-[node name="AppDrawer" type="Button" parent="MenuButtons/2ndMenu"]
+[node name="AppDrawer" type="Button" parent="MenuButtons/SaveMenu"]
 offset_left = 924.0
 offset_top = 57.0
 offset_right = 1099.0
@@ -314,7 +394,89 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
-icon = ExtResource("9_qsdv5")
+icon = ExtResource("18_raa2y")
+
+[node name="LoadMenu" type="Node2D" parent="MenuButtons"]
+position = Vector2(0, 98)
+
+[node name="BackButton" type="Button" parent="MenuButtons/LoadMenu" node_paths=PackedStringArray("animationPlayer")]
+offset_left = -1.0
+offset_top = 54.0
+offset_right = 182.0
+offset_bottom = 162.0
+scale = Vector2(0.959862, 0.959862)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ug3df")
+icon = ExtResource("5_lac4c")
+flat = true
+script = ExtResource("5_6jhwe")
+animationPlayer = NodePath("../../../AnimationPlayer")
+isLoadMenu = true
+
+[node name="Start_Stop" type="Button" parent="MenuButtons/LoadMenu"]
+offset_left = 183.0
+offset_top = 54.0
+offset_right = 366.0
+offset_bottom = 162.0
+scale = Vector2(0.957933, 0.957933)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f38r2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xmjfm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uybui")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_olmrc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yx8v7")
+toggle_mode = true
+icon = ExtResource("14_4xe6u")
+
+[node name="SaveButton" type="Button" parent="MenuButtons/LoadMenu"]
+offset_left = 370.0
+offset_top = 54.0
+offset_right = 553.0
+offset_bottom = 162.0
+scale = Vector2(0.959339, 0.959339)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_di6wo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_y3x7q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_khoea")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_c5270")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hh7tn")
+icon = ExtResource("15_y7y2l")
+
+[node name="LoadButton" type="Button" parent="MenuButtons/LoadMenu"]
+offset_left = 551.0
+offset_top = 57.0
+offset_right = 726.0
+offset_bottom = 157.0
+scale = Vector2(0.959508, 0.959508)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("16_208ps")
+
+[node name="LightButton" type="Button" parent="MenuButtons/LoadMenu"]
+offset_left = 738.0
+offset_top = 57.0
+offset_right = 913.0
+offset_bottom = 157.0
+scale = Vector2(0.961521, 0.961521)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("17_p6ldx")
+
+[node name="AppDrawer" type="Button" parent="MenuButtons/LoadMenu"]
+offset_left = 924.0
+offset_top = 57.0
+offset_right = 1099.0
+offset_bottom = 157.0
+scale = Vector2(0.959567, 0.959567)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bph2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v3dxt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vi40s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
+icon = ExtResource("18_raa2y")
 
 [node name="Crosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("temperatureLabel")]
 position = Vector2(253, 145)
@@ -332,7 +494,8 @@ libraries = {
 [connection signal="mouse_entered" from="Control" to="Control" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="Control" method="_on_mouse_exited"]
 [connection signal="updateTouchPos" from="Control" to="Crosshair" method="_on_control_update_touch_pos"]
-[connection signal="pressed" from="MenuButtons/BackButton" to="MenuButtons/BackButton" method="_on_pressed"]
 [connection signal="toggled" from="MenuButtons/MainMenu/Start_Stop" to="MenuButtons/MainMenu/Start_Stop" method="_on_toggled"]
 [connection signal="pressed" from="MenuButtons/MainMenu/SaveButton" to="MenuButtons/MainMenu/SaveButton" method="_on_pressed"]
-[connection signal="toggled" from="MenuButtons/2ndMenu/Start_Stop" to="MenuButtons/2ndMenu/Start_Stop" method="_on_toggled"]
+[connection signal="pressed" from="MenuButtons/MainMenu/LoadButton" to="MenuButtons/MainMenu/LoadButton" method="_on_pressed"]
+[connection signal="pressed" from="MenuButtons/SaveMenu/BackButton" to="MenuButtons/SaveMenu/BackButton" method="_on_pressed"]
+[connection signal="pressed" from="MenuButtons/LoadMenu/BackButton" to="MenuButtons/LoadMenu/BackButton" method="_on_pressed"]
