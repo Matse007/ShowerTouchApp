@@ -66,6 +66,34 @@ content_margin_bottom = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrt6n"]
 
+[sub_resource type="Animation" id="Animation_2rrr7"]
+resource_name = "FadeToLoad"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons/MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 98)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/LoadMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 98), Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_mg5sf"]
 resource_name = "FadeToSave"
 length = 0.15
@@ -92,34 +120,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 98), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ut7cc"]
-resource_name = "FadeinMainFromSave"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MenuButtons/MainMenu:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.05, 0.15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 98), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MenuButtons/SaveMenu:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 98)]
 }
 
 [sub_resource type="Animation" id="Animation_ekq7y"]
@@ -150,8 +150,8 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(0, 98)]
 }
 
-[sub_resource type="Animation" id="Animation_2rrr7"]
-resource_name = "FadeToLoad"
+[sub_resource type="Animation" id="Animation_ut7cc"]
+resource_name = "FadeinMainFromSave"
 length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -160,22 +160,22 @@ tracks/0/path = NodePath("MenuButtons/MainMenu:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 98)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MenuButtons/LoadMenu:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.05, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 98), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/SaveMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 98)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hcumi"]
@@ -479,7 +479,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
 icon = ExtResource("18_raa2y")
 
 [node name="Crosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("temperatureLabel")]
-position = Vector2(253, 145)
+position = Vector2(549, 266)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_vantl")
 script = ExtResource("5_5n6uy")
