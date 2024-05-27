@@ -1,9 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://dpijblhi4pkne"]
+[gd_scene load_steps=48 format=3 uid="uid://dpijblhi4pkne"]
 
 [ext_resource type="Script" path="res://scripts/TouchControl.gd" id="1_ckmis"]
 [ext_resource type="Texture2D" uid="uid://bv27nctu4xkax" path="res://assets/images/Embedded Display.png" id="1_oflau"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_uqsqo"]
 [ext_resource type="Texture2D" uid="uid://cnsg3rpv8y2o7" path="res://assets/images/Embedded Displaywithbuttons.png" id="3_qk3te"]
+[ext_resource type="Texture2D" uid="uid://bgs8k5p7memf0" path="res://assets/images/Embedded Display_light.png" id="4_fnv7s"]
 [ext_resource type="Texture2D" uid="uid://c1r0re0urein6" path="res://assets/images/svg/settingsButton.svg" id="4_srdjn"]
 [ext_resource type="Texture2D" uid="uid://co1kscwv2db8r" path="res://assets/images/Crosshair.png" id="4_vantl"]
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="5_5n6uy"]
@@ -18,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c048j1d8c7jx5" path="res://assets/images/svg/appButton.svg" id="9_qsdv5"]
 [ext_resource type="Script" path="res://scripts/LoadButton.gd" id="10_oi8ul"]
 [ext_resource type="Texture2D" uid="uid://jgev43i0qvpy" path="res://assets/images/svg/1.svg" id="14_4xe6u"]
+[ext_resource type="Texture2D" uid="uid://cm5d2e1cgqyua" path="res://assets/images/svg/Start.svg" id="14_phvle"]
 [ext_resource type="Texture2D" uid="uid://cxlpm4ax3i1kd" path="res://assets/images/svg/2.svg" id="15_y7y2l"]
 [ext_resource type="Texture2D" uid="uid://bcotyvrjk5kgr" path="res://assets/images/svg/3.svg" id="16_208ps"]
 [ext_resource type="Texture2D" uid="uid://drrc4586f23wd" path="res://assets/images/svg/4.svg" id="17_p6ldx"]
@@ -29,6 +31,8 @@
 font = SubResource("SystemFont_yayw5")
 font_size = 64
 font_color = Color(1, 0.313726, 0.313726, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ug3df"]
 content_margin_left = 0.0
@@ -198,10 +202,17 @@ mouse_filter = 1
 script = ExtResource("1_ckmis")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_right = 1100.0
 offset_bottom = 620.0
 texture = ExtResource("1_oflau")
+
+[node name="TextureRect3" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 1100.0
+offset_bottom = 620.0
+texture = ExtResource("4_fnv7s")
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
 visible = false
@@ -232,6 +243,7 @@ offset_bottom = 619.0
 mouse_filter = 1
 
 [node name="MainMenu" type="Node2D" parent="MenuButtons"]
+visible = false
 
 [node name="Settings" type="Button" parent="MenuButtons/MainMenu"]
 offset_left = -1.0
@@ -315,7 +327,25 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
 icon = ExtResource("9_qsdv5")
 
+[node name="NewMenu" type="Node2D" parent="MenuButtons"]
+
+[node name="Start_Stop" type="Button" parent="MenuButtons/NewMenu" node_paths=PackedStringArray("sprite")]
+offset_top = 49.0
+offset_right = 1100.0
+offset_bottom = 157.0
+scale = Vector2(1.0014, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f38r2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xmjfm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uybui")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_olmrc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yx8v7")
+toggle_mode = true
+icon = ExtResource("14_phvle")
+script = ExtResource("6_xurlb")
+sprite = NodePath("../../../Crosshair")
+
 [node name="SaveMenu" type="Node2D" parent="MenuButtons"]
+visible = false
 position = Vector2(0, 98)
 
 [node name="BackButton" type="Button" parent="MenuButtons/SaveMenu" node_paths=PackedStringArray("animationPlayer")]
@@ -397,6 +427,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
 icon = ExtResource("18_raa2y")
 
 [node name="LoadMenu" type="Node2D" parent="MenuButtons"]
+visible = false
 position = Vector2(0, 98)
 
 [node name="BackButton" type="Button" parent="MenuButtons/LoadMenu" node_paths=PackedStringArray("animationPlayer")]
@@ -497,5 +528,6 @@ libraries = {
 [connection signal="toggled" from="MenuButtons/MainMenu/Start_Stop" to="MenuButtons/MainMenu/Start_Stop" method="_on_toggled"]
 [connection signal="pressed" from="MenuButtons/MainMenu/SaveButton" to="MenuButtons/MainMenu/SaveButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuButtons/MainMenu/LoadButton" to="MenuButtons/MainMenu/LoadButton" method="_on_pressed"]
+[connection signal="toggled" from="MenuButtons/NewMenu/Start_Stop" to="MenuButtons/NewMenu/Start_Stop" method="_on_toggled"]
 [connection signal="pressed" from="MenuButtons/SaveMenu/BackButton" to="MenuButtons/SaveMenu/BackButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuButtons/LoadMenu/BackButton" to="MenuButtons/LoadMenu/BackButton" method="_on_pressed"]

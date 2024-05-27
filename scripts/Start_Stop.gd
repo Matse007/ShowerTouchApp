@@ -4,9 +4,9 @@ extends Button
 @export var animationPlayer: AnimationPlayer
 @export var sprite: Sprite2D
 var crosshairActive = preload("res://assets/images/Crosshair.png")
-var crosshairInactive = preload("res://assets/images/svg/crosshairDisabled.png")
-var iconActive = preload("res://assets/images/svg/PlayButtonVar.svg")
-var iconInactive = preload("res://assets/images/svg/PlayButton.svg")
+var crosshairInactive = preload("res://assets/images/crosshairDisabled.png")
+var iconActive = preload("res://assets/images/svg/Stop.svg")
+var iconInactive = preload("res://assets/images/svg/Start.svg")
 
 func _ready():
 	sprite.texture = crosshairInactive
