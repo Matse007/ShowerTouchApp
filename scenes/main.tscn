@@ -209,6 +209,7 @@ offset_bottom = 620.0
 texture = ExtResource("1_oflau")
 
 [node name="TextureRect3" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_right = 1100.0
 offset_bottom = 620.0
@@ -223,12 +224,13 @@ offset_bottom = 620.0
 texture = ExtResource("3_qk3te")
 
 [node name="Label" type="Label" parent="Control"]
+z_index = 2
 layout_mode = 0
 offset_left = 958.0
 offset_top = -11.0
 offset_right = 1100.0
 offset_bottom = 77.0
-text = "39°C"
+text = "30°C"
 label_settings = SubResource("LabelSettings_aqj1j")
 
 [node name="Interactionelements" type="Node2D" parent="."]
@@ -256,6 +258,7 @@ icon = ExtResource("4_srdjn")
 flat = true
 
 [node name="Start_Stop" type="Button" parent="MenuButtons/MainMenu" node_paths=PackedStringArray("sprite")]
+visible = false
 offset_left = 183.0
 offset_top = 54.0
 offset_right = 366.0
@@ -330,9 +333,10 @@ icon = ExtResource("9_qsdv5")
 [node name="NewMenu" type="Node2D" parent="MenuButtons"]
 
 [node name="Start_Stop" type="Button" parent="MenuButtons/NewMenu" node_paths=PackedStringArray("sprite")]
+offset_left = -1.0
 offset_top = 49.0
-offset_right = 1100.0
-offset_bottom = 157.0
+offset_right = 1141.0
+offset_bottom = 161.0
 scale = Vector2(1.0014, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_f38r2")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xmjfm")
@@ -509,12 +513,21 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_wjqp7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qrt6n")
 icon = ExtResource("18_raa2y")
 
-[node name="Crosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("temperatureLabel")]
+[node name="Crosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("temperatureLabel", "waterColorRect")]
 position = Vector2(549, 266)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_vantl")
 script = ExtResource("5_5n6uy")
 temperatureLabel = NodePath("../Control/Label")
+waterColorRect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="Crosshair"]
+z_index = -1
+offset_left = -2123.0
+offset_right = 1761.0
+offset_bottom = 724.0
+mouse_filter = 2
+color = Color(0, 0, 0.741176, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -32,3 +32,4 @@ mouse_pressed={
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.103743, 0.103744, 0.103744, 1)
