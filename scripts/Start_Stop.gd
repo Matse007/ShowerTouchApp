@@ -3,7 +3,7 @@ extends Button
 @export_group("Nodes")
 @export var animationPlayer: AnimationPlayer
 @export var sprite: Sprite2D
-var crosshairActive = preload("res://assets/images/Crosshair.png")
+var crosshairActive = preload("res://assets/images/crosshair_new.png")
 var crosshairInactive = preload("res://assets/images/crosshairDisabled.png")
 var iconActive = preload("res://assets/images/svg/Stop.svg")
 var iconInactive = preload("res://assets/images/svg/Start.svg")

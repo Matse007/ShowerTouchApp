@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cnsg3rpv8y2o7" path="res://assets/images/Embedded Displaywithbuttons.png" id="3_qk3te"]
 [ext_resource type="Texture2D" uid="uid://bgs8k5p7memf0" path="res://assets/images/Embedded Display_light.png" id="4_fnv7s"]
 [ext_resource type="Texture2D" uid="uid://c1r0re0urein6" path="res://assets/images/svg/settingsButton.svg" id="4_srdjn"]
-[ext_resource type="Texture2D" uid="uid://co1kscwv2db8r" path="res://assets/images/Crosshair.png" id="4_vantl"]
 [ext_resource type="Script" path="res://scripts/Crosshair.gd" id="5_5n6uy"]
 [ext_resource type="Script" path="res://scripts/BackButton.gd" id="5_6jhwe"]
 [ext_resource type="Texture2D" uid="uid://xkvelhia30e0" path="res://assets/images/svg/backButton.svg" id="5_lac4c"]
@@ -24,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bcotyvrjk5kgr" path="res://assets/images/svg/3.svg" id="16_208ps"]
 [ext_resource type="Texture2D" uid="uid://drrc4586f23wd" path="res://assets/images/svg/4.svg" id="17_p6ldx"]
 [ext_resource type="Texture2D" uid="uid://dsdoanc448ah0" path="res://assets/images/svg/5.svg" id="18_raa2y"]
+[ext_resource type="Texture2D" uid="uid://cvxoaxesnykmp" path="res://assets/images/crosshair_new.png" id="23_aoj8j"]
 
 [sub_resource type="SystemFont" id="SystemFont_yayw5"]
 
@@ -226,9 +226,9 @@ texture = ExtResource("3_qk3te")
 [node name="Label" type="Label" parent="Control"]
 z_index = 2
 layout_mode = 0
-offset_left = 958.0
+offset_left = 952.0
 offset_top = -11.0
-offset_right = 1100.0
+offset_right = 1094.0
 offset_bottom = 77.0
 text = "30°C"
 label_settings = SubResource("LabelSettings_aqj1j")
@@ -516,7 +516,7 @@ icon = ExtResource("18_raa2y")
 [node name="Crosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("temperatureLabel", "waterColorRect")]
 position = Vector2(549, 266)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_vantl")
+texture = ExtResource("23_aoj8j")
 script = ExtResource("5_5n6uy")
 temperatureLabel = NodePath("../Control/Label")
 waterColorRect = NodePath("ColorRect")
@@ -537,6 +537,7 @@ libraries = {
 [connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
 [connection signal="mouse_entered" from="Control" to="Control" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="Control" method="_on_mouse_exited"]
+[connection signal="releasedTouch" from="Control" to="Crosshair" method="_on_control_released_touch"]
 [connection signal="updateTouchPos" from="Control" to="Crosshair" method="_on_control_update_touch_pos"]
 [connection signal="toggled" from="MenuButtons/MainMenu/Start_Stop" to="MenuButtons/MainMenu/Start_Stop" method="_on_toggled"]
 [connection signal="pressed" from="MenuButtons/MainMenu/SaveButton" to="MenuButtons/MainMenu/SaveButton" method="_on_pressed"]

@@ -9,6 +9,7 @@ func _on_control_update_touch_pos(coordinates):
 	self.position.y = clamp(coordinates.y,72,450)
 	calculateTemps(coordinates.x)
 	update_water_color(coordinates.x)
+	RenderingServer.set_default_clear_color(Color("343434"))
 
 # 128 960
 # 20,8
@@ -27,3 +28,7 @@ func update_water_color(coords: int) -> void:
 	# Lerp between blue and red colors
 	var color: Color = Color(1, 0, 0) * ratio + Color(0, 0, 1) * (1 - ratio)
 	waterColorRect.color = color
+
+
+func _on_control_released_touch():
+	RenderingServer.set_default_clear_color(Color("1a1a1a"))
