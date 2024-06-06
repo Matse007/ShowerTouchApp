@@ -4,7 +4,17 @@ extends Sprite2D
 var temperatureLabel: Label
 @export
 var waterColorRect: ColorRect
+var crosshairActiveSmall = preload("res://assets/images/Crosshairs/crosshairSmallRun.svg")
+var crosshairInactiveSmall = preload("res://assets/images/Crosshairs/crosshairSmall.svg")
+var crosshairActive = preload("res://assets/images/Crosshair2.png")
+var crosshairInactive = preload("res://assets/images/Crosshair2Disabled.png")
+var isEnabled: bool
+
+func _ready():
+	isEnabled = false
+	
 func _on_control_update_touch_pos(coordinates):
+	self.texture = crosshairActive if isEnabled else crosshairInactive
 	self.position.x = clamp(coordinates.x,128,960)
 	self.position.y = clamp(coordinates.y,72,450)
 	calculateTemps(coordinates.x)
@@ -31,4 +41,9 @@ func update_water_color(coords: int) -> void:
 
 
 func _on_control_released_touch():
+	self.texture = crosshairActiveSmall if isEnabled else crosshairInactiveSmall
 	RenderingServer.set_default_clear_color(Color("1a1a1a"))
+
+
+func _on_start_stop_toggled(toggled_on):
+	isEnabled = toggled_on

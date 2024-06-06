@@ -18,12 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://c048j1d8c7jx5" path="res://assets/images/svg/appButton.svg" id="9_qsdv5"]
 [ext_resource type="Script" path="res://scripts/LoadButton.gd" id="10_oi8ul"]
 [ext_resource type="Texture2D" uid="uid://jgev43i0qvpy" path="res://assets/images/svg/1.svg" id="14_4xe6u"]
-[ext_resource type="Texture2D" uid="uid://cm5d2e1cgqyua" path="res://assets/images/svg/Start.svg" id="14_phvle"]
+[ext_resource type="Texture2D" uid="uid://cg2c5geinvxvd" path="res://assets/images/svg/start2.svg" id="15_0bgbj"]
 [ext_resource type="Texture2D" uid="uid://cxlpm4ax3i1kd" path="res://assets/images/svg/2.svg" id="15_y7y2l"]
 [ext_resource type="Texture2D" uid="uid://bcotyvrjk5kgr" path="res://assets/images/svg/3.svg" id="16_208ps"]
 [ext_resource type="Texture2D" uid="uid://drrc4586f23wd" path="res://assets/images/svg/4.svg" id="17_p6ldx"]
 [ext_resource type="Texture2D" uid="uid://dsdoanc448ah0" path="res://assets/images/svg/5.svg" id="18_raa2y"]
-[ext_resource type="Texture2D" uid="uid://cvxoaxesnykmp" path="res://assets/images/crosshair_new.png" id="23_aoj8j"]
+[ext_resource type="Texture2D" uid="uid://d4ih83bicq0gi" path="res://assets/images/Crosshairs/crosshairSmallRun.svg" id="23_ictby"]
 
 [sub_resource type="SystemFont" id="SystemFont_yayw5"]
 
@@ -344,7 +344,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_uybui")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_olmrc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yx8v7")
 toggle_mode = true
-icon = ExtResource("14_phvle")
+icon = ExtResource("15_0bgbj")
 script = ExtResource("6_xurlb")
 sprite = NodePath("../../../Crosshair")
 
@@ -515,8 +515,7 @@ icon = ExtResource("18_raa2y")
 
 [node name="Crosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("temperatureLabel", "waterColorRect")]
 position = Vector2(549, 266)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("23_aoj8j")
+texture = ExtResource("23_ictby")
 script = ExtResource("5_5n6uy")
 temperatureLabel = NodePath("../Control/Label")
 waterColorRect = NodePath("ColorRect")
@@ -543,5 +542,6 @@ libraries = {
 [connection signal="pressed" from="MenuButtons/MainMenu/SaveButton" to="MenuButtons/MainMenu/SaveButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuButtons/MainMenu/LoadButton" to="MenuButtons/MainMenu/LoadButton" method="_on_pressed"]
 [connection signal="toggled" from="MenuButtons/NewMenu/Start_Stop" to="MenuButtons/NewMenu/Start_Stop" method="_on_toggled"]
+[connection signal="toggled" from="MenuButtons/NewMenu/Start_Stop" to="Crosshair" method="_on_start_stop_toggled"]
 [connection signal="pressed" from="MenuButtons/SaveMenu/BackButton" to="MenuButtons/SaveMenu/BackButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuButtons/LoadMenu/BackButton" to="MenuButtons/LoadMenu/BackButton" method="_on_pressed"]
